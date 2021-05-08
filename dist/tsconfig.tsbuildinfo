@@ -587,8 +587,8 @@
         "affectsGlobalScope": false
       },
       "../src/processors/libs/announcements/types.ts": {
-        "version": "b4e5fb0f710266795d6b8bb401a39f5e6b7b5d9eb154cb843e3a4b97564d8476",
-        "signature": "7a29a6664f20795d398bc4ac6fe226f4bdb0866b38996b2ecf41c9af4807a3ed",
+        "version": "6df3bf70fe7d4fb35b5d41bd84aea0b96c77bb3179bc4d5749f5c999a49a31a1",
+        "signature": "1318a351b061ba95f258e0b47617058a4aba969b8aac99ece4e901ed008c83e1",
         "affectsGlobalScope": false
       },
       "../node_modules/js-sha256/index.d.ts": {
@@ -597,7 +597,7 @@
         "affectsGlobalScope": false
       },
       "../src/processors/libs/announcements/index.ts": {
-        "version": "2ea0f8abbe32c779644581ec00dfb3791ea091397855358c2ef7ad0710ce0770",
+        "version": "a295f3e22fcebfb760b9980b0098815996095dbedc115756b16243c05db20b3c",
         "signature": "d2e26e353a7cdcae45edc4882b7114297104542194a714ed255f823ae76c31da",
         "affectsGlobalScope": false
       },

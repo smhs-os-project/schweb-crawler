@@ -12,7 +12,6 @@ function Announcements($, selector, prefix) {
                 id: js_sha256_1.sha256(`${title}${url}`),
                 title,
                 url,
-                content: "none",
             });
         }
     });
