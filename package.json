@@ -10,14 +10,12 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.9",
-    "fs-extra": "^10.0.0",
     "js-sha256": "^0.9.0",
     "node-fetch": "^2.6.1",
     "pino": "^6.11.3",
     "pino-pretty": "^4.7.1"
   },
   "devDependencies": {
-    "@types/fs-extra": "^9.0.11",
     "@types/node-fetch": "^2.5.10",
     "@types/pino": "^6.3.8",
     "ts-node": "^9.1.1",
