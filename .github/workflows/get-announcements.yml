@@ -21,10 +21,17 @@ jobs:
       uses: actions/setup-node@master
       with:
         node-version: 14
-    - run: yarn
-    - run: node ./dist/index.js
-    - uses: actions-js/push@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: "smhs-announcements"
-        force: true
+    - name: Retrieving the dependencies
+      run: yarn
+    - name: Get the announcements
+      run: node ./dist/index.js
+    - name: Clone the artifact repository (A.R.)
+      run: |
+        git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/smhs-os-project/smhs-announcements ../announce
+    - name: Copy the artifacts to the A.R.
+      run: cp ./data/* ../announce
+    - name: Commit and push to A.R.
+      run: |
+        cd ../announce
+        git commit -m "update the announcement"
+        git push
