@@ -1,7 +1,7 @@
 import { availableProcessors } from "./processors/available";
 import { createStandardPackageFile } from "./stdpkg";
 import type { StandardPackage } from "./stdpkg/types";
-import { SOURCE_URL } from "./consts";
+import { DATA_ROOT, SOURCE_URL } from "./consts";
 import { getParseCheerio } from "./utils/getParseCheerio";
 import { logger } from "./loggers";
 
@@ -33,5 +33,5 @@ export async function main() {
   await Promise.all(promises);
 
   log.debug("Serializing these packages to a JSON file...");
-  packages.forEach((p) => createStandardPackageFile("./data", p));
+  packages.forEach((p) => createStandardPackageFile(DATA_ROOT, p));
 }
