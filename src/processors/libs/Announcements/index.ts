@@ -34,7 +34,7 @@ export async function Announcements(
       const content = AnnouncementContentProcessor(url);
       log.debug("calculating ID");
       const id = sha256(`${title}${url}`);
-      const contentFilename = `./${prefix}-announcements-${id}.json`;
+      const contentFilename = `./announcements/${prefix}/${id}.json`;
 
       log.debug("pushing the processed announcements list to 'announcements'");
       announcements.push({
