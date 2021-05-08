@@ -9,7 +9,10 @@ import path from "path";
  * @returns The serialized data of the "data" field in the standard package.
  */
 export function serializeStandardPackageData({ data }: StandardPackage<unknown>): string {
-  return JSON.stringify(data);
+  return JSON.stringify({
+    at: (new Date()).toISOString(),
+    data,
+  });
 }
 
 /**
