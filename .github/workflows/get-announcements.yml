@@ -37,4 +37,4 @@ jobs:
         git config user.name "SMHS Open Source Organization"
         git add -A
         git commit -m "update the announcement"
-        git push
+        git push -f
