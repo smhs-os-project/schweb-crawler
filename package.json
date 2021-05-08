@@ -1,0 +1,17 @@
+{
+  "name": "smhs-crawler",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.9",
+    "fs-extra": "^10.0.0",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.11",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4",
+    "@types/node-fetch": "^2.5.10"
+  }
+}
