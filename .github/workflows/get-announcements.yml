@@ -27,7 +27,7 @@ jobs:
       run: node ./dist/index.js
     - name: Clone the artifact repository (A.R.)
       run: |
-        git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/smhs-os-project/smhs-announcements ../announce
+        git clone https://.:${{ secrets.SCHWEB_TOKEN }}@github.com/smhs-os-project/smhs-announcements ../announce
     - name: Copy the artifacts to the A.R.
       run: cp ./data/* ../announce
     - name: Commit and push to A.R.
