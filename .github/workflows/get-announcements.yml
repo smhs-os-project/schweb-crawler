@@ -17,6 +17,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+    - name: Clone the artifact repository (A.R.)
+      run: |
+        rm -rf data
+        git clone https://.:${{ secrets.SCHWEB_TOKEN }}@github.com/smhs-os-project/smhs-announcements data
     - name: Use Node.js 14.x
       uses: actions/setup-node@master
       with:
@@ -25,14 +29,9 @@ jobs:
       run: yarn
     - name: Get the announcements
       run: yarn start
-    - name: Clone the artifact repository (A.R.)
-      run: |
-        git clone https://.:${{ secrets.SCHWEB_TOKEN }}@github.com/smhs-os-project/smhs-announcements ../announce
-    - name: Copy the artifacts to the A.R.
-      run: cp ./data/* ../announce
     - name: Commit and push to A.R.
       run: |
-        cd ../announce
+        cd data
         git config user.email "sw@imych.one"
         git config user.name "SMHS Open Source Organization"
         git add -A
