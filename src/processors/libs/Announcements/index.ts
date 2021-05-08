@@ -5,6 +5,7 @@ import { sha256 } from "js-sha256";
 import { Processors } from "../../base";
 import { AnnouncementContentProcessor } from "./content";
 import { logger } from "../../../loggers";
+import { existedInRoot } from "../../../utils/existedInRoot";
 
 export async function Announcements(
   $: CheerioAPI,
@@ -30,8 +31,6 @@ export async function Announcements(
       log.debug("YES: continue processing");
       log.info(`Processing: [${prefix}] ${title}`)
 
-      log.debug("processing content");
-      const content = AnnouncementContentProcessor(url);
       log.debug("calculating ID");
       const id = sha256(`${title}${url}`);
       const contentFilename = `./announcements/${prefix}/${id}.json`;
@@ -50,13 +49,20 @@ export async function Announcements(
         data: announcements,
       });
 
-      promises.push(content.then((data) => {
-        log.debug("pushing the processed announcements content packages to 'packages'");
-        packages.push({
-          filename: contentFilename,
-          data: data as any,
-        });
-      }).catch(log.error));
+      log.debug("processing content");
+      log.debug("  - checking if the content has created before")
+      if (!existedInRoot(contentFilename)) {
+        log.debug("    - NO. fetching and creating the content");
+        const content = AnnouncementContentProcessor(url);
+
+        promises.push(content.then((data) => {
+          log.debug("pushing the processed announcements content packages to 'packages'");
+          packages.push({
+            filename: contentFilename,
+            data: data as any,
+          });
+        }).catch(log.error));
+      } else log.debug("    - YES. will not fetch it.");
     }
   });
 
