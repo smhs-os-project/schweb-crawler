@@ -16,26 +16,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checking out the program
-      uses: actions/checkout@master
-      with:
-        path: "prog"
-    - name: Checking out the announcements repository
-      uses: actions/checkout@master
-      with:
-        repository: "smhs-os-project/smhs-announcements"
-        path: "announce"
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@master
-      with:
-        node-version: 14
-    - name: Preparing dependencies
-      run: yarn
-    - name: Fetching announcements
-      run: node ./dist/index.js
-    - name: >
-        Copying the fetched announcements to
-        the announcements repository
-      run: cp ./data/* ../announce
-    - name: Pushing to the announcements repository
-      run: cd ../announce && git push
+      - name: Checking out the announcements repository
+        uses: actions/checkout@master
+        with:
+          repository: "smhs-os-project/smhs-announcements"
+          path: "announce"
+      - name: Checking out the program
+        uses: actions/checkout@master
+        with:
+          path: "prog"
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@master
+        with:
+          node-version: 14
+      - name: Preparing dependencies
+        run: yarn
+      - name: Fetching announcements
+        run: node ./dist/index.js
+      - name: >
+          Copying the fetched announcements to
+          the announcements repository
+        run: cp ./data/* ../announce
+      - name: Pushing to the announcements repository
+        run: cd ../announce && git push
