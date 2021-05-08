@@ -24,7 +24,7 @@ jobs:
     - name: Retrieving the dependencies
       run: yarn
     - name: Get the announcements
-      run: node ./dist/index.js
+      run: yarn start
     - name: Clone the artifact repository (A.R.)
       run: |
         git clone https://.:${{ secrets.SCHWEB_TOKEN }}@github.com/smhs-os-project/smhs-announcements ../announce
