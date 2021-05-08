@@ -4,4 +4,4 @@ import type { StandardPackage } from "../stdpkg/types";
 /**
  * A standard processors.
  */
-export type Processors = ($: CheerioAPI) => StandardPackage<unknown> | StandardPackage<unknown>[];
+export type Processors = ($: CheerioAPI) => Promise<StandardPackage<unknown> | StandardPackage<unknown>[]>;

@@ -6,14 +6,15 @@ import { Processors } from "../../base";
 import { AnnouncementContentProcessor } from "./content";
 import { logger } from "../../../loggers";
 
-export function Announcements(
+export async function Announcements(
   $: CheerioAPI,
   selector: string,
   prefix: string
-): StandardPackage<Announcement[] | AnnouncementContent>[] {
+): Promise<StandardPackage<Announcement[] | AnnouncementContent<{}>>[]> {
   const log = logger("processors.libs.Announcements.index.Announcements");
   const packages: StandardPackage<Announcement[] | AnnouncementContent>[] = [];
   const announcements: Announcement[] = [];
+  const promises: Promise<void>[] = [];
 
   log.debug(`selecting ${selector} and running each function`);
   $(selector).each(function (id) {
@@ -49,15 +50,18 @@ export function Announcements(
         data: announcements,
       });
 
-      content.then((data) => {
+      promises.push(content.then((data) => {
         log.debug("pushing the processed announcements content packages to 'packages'");
         packages.push({
           filename: contentFilename,
           data: data as any,
         });
-      }).catch(log.error);
+      }).catch(log.error));
     }
   });
+
+  log.debug("Waiting for all promises completed");
+  await Promise.all(promises);
 
   return packages;
 }

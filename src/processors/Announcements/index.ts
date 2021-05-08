@@ -8,8 +8,8 @@ export const ContestAnnouncements = AnnouncementWrapper("#Dyn_1_2_1 a", "contest
 
 export const AnnouncementsProcessors = [
   LawAnnouncements,
-  SchoolAnnouncements,
-  GradeAnnouncements,
-  StudyAnnouncements,
-  ContestAnnouncements,
+  // SchoolAnnouncements,
+  // GradeAnnouncements,
+  // StudyAnnouncements,
+  // ContestAnnouncements,
 ];

@@ -3,7 +3,7 @@ import { logger } from "../../loggers";
 import type { StandardPackage } from "../../stdpkg/types";
 import type { UsefulLinkStructure } from "./types";
 
-export default function UsefulLink($: CheerioAPI): StandardPackage<UsefulLinkStructure[]> {
+export default async function UsefulLink($: CheerioAPI): Promise<StandardPackage<UsefulLinkStructure[]>> {
   const log = logger("processors.UsefulLink.UsefulLink");
   const data: UsefulLinkStructure[] = [];
 

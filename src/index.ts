@@ -15,9 +15,9 @@ export async function main() {
   const $ = await getParseCheerio(SOURCE_URL);
 
   log.debug("Execute processors to make the data packages...");
-  availableProcessors.forEach(p => {
+  const promises = availableProcessors.map(async p => {
     log.info(`Running processors: ${p.name}`);
-    const thePackage = p($);
+    const thePackage = await p($);
 
     log.debug("Checking if the package is an array");
     if (Array.isArray(thePackage)) {
@@ -28,6 +28,9 @@ export async function main() {
       packages.push(thePackage);
     }
   });
+
+  log.debug("Waiting for promises completed...");
+  await Promise.all(promises);
 
   log.debug("Serializing these packages to a JSON file...");
   packages.forEach((p) => createStandardPackageFile("./data", p));
