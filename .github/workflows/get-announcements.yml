@@ -24,6 +24,7 @@ jobs:
     - run: node ./dist/index.js
     - uses: actions-js/push@master
       with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: "smhs-announcements"
         message: "Update announcements to ${date}"
         force: true
