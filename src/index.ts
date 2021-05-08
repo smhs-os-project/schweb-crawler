@@ -1,13 +1,11 @@
-import fetch from "node-fetch";
-import cheerio from "cheerio";
 import { availableProcessors } from "./processors/available";
 import { createStandardPackageFile } from "./stdpkg";
-import { StandardPackage } from "./stdpkg/types";
+import type { StandardPackage } from "./stdpkg/types";
 import { SOURCE_URL } from "./consts";
+import { getParseCheerio } from "./utils/getParseCheerio";
 
 export async function main() {
-  const html = await fetch(SOURCE_URL).then(r => r.text());
-  const $ = cheerio.load(html);
+  const $ = await getParseCheerio(SOURCE_URL);
 
   // The package list.
   const packages: StandardPackage<unknown>[] = [];
