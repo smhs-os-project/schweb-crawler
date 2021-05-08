@@ -1,5 +1,5 @@
 import type { StandardPackage } from "./types";
-import fs from "fs-extra";
+import fs from "fs";
 import path from "path";
 import { logger } from "../loggers";
 
@@ -28,8 +28,12 @@ export function serializeStandardPackageData({ data }: StandardPackage<unknown>)
  */
 export async function createStandardPackageFile(root: string, pkg: StandardPackage<unknown>): Promise<void> {
   const log = logger("stdpkg.index.createStandardPackageFile");
-  const p = path.join(root, pkg.filename);
+  const filePath = path.join(root, pkg.filename);
 
-  log.debug(`writing the serialized standard package data to ${p}`);
-  return fs.writeFile(p, serializeStandardPackageData(pkg));
+  log.debug("creating folders that wasn't created before");
+  const parentFolder = path.join(filePath, "..");
+  if (!fs.existsSync(parentFolder)) await fs.promises.mkdir(parentFolder, { recursive: true });
+
+  log.debug(`writing the serialized standard package data to ${filePath}`);
+  return fs.promises.writeFile(filePath, serializeStandardPackageData(pkg));
 }
