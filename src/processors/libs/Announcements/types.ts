@@ -13,10 +13,10 @@ export interface Announcement {
    * The url of this announcement.
    */
   url: string;
-  /**
-   * The relative link to the serialized content of this announcement.
-   */
-  content: string;
+  // /**
+  //  * The relative link to the serialized content of this announcement.
+  //  */
+  // content: string;
 }
 
 /**

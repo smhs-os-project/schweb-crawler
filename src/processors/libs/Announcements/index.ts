@@ -16,7 +16,6 @@ export function Announcements($: CheerioAPI, selector: string, prefix: string): 
         id: sha256(`${title}${url}`),
         title,
         url,
-        content: "none",
       });
     }
   });
