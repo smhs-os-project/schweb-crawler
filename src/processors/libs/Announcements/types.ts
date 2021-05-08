@@ -19,14 +19,6 @@ export interface Announcement {
   content: string;
 }
 
-/**
- * The fetched announcement list.
- *
- * Inside the list, it is the ID of the announcement. Useful
- * on preventing re-fetching the fetched announcement.
- */
-export type FetchedAnnouncementList = [];
-
 export interface AnnouncementAttachments<T = {}> {
   /**
    * The name of this attachment.
