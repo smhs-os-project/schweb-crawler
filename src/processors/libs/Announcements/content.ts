@@ -23,10 +23,10 @@ function announcementAttachmentsParser($: CheerioAPI): AnnouncementAttachments[]
   const attachments: AnnouncementAttachments[] = [];
 
   log.debug("extracting the attachments");
-  const attachmentsDOM = $(".mptattach a");
+  const $attachments = $(".mptattach a");
 
   log.debug("start running each function");
-  attachmentsDOM.each(function (id) {
+  $attachments.each(function (id) {
     const log = logger(`processors.libs.Announcements.content.announcementAttachmentsParser#Each:${id}`);
 
     log.debug("extracting 'title' attribute");
@@ -60,12 +60,12 @@ function announcementContentParser($: CheerioAPI): AnnouncementContent | null {
   const log = logger("processors.libs.Announcements.content.announcementContentParser");
 
   log.debug("getting the title DOM");
-  const titleDOM = $(".hdline");
+  const $title = $(".hdline");
   log.debug("getting the content DOM");
-  const contentDOM = $(".meditor");
+  const $content = $(".meditor");
 
   log.debug("checking if the titleDOM is empty");
-  if (!titleDOM.text()) {
+  if (!$title.text()) {
     log.debug("YES: the titleDOM is empty.")
     log.warn("Weird case: The '.hdline' class isn't there");
     log.warn($.html() || "<no data>");
@@ -74,9 +74,9 @@ function announcementContentParser($: CheerioAPI): AnnouncementContent | null {
 
   log.debug("returning the content");
   return {
-    title: titleDOM.text(),
-    content: contentDOM.text() || "",
-    contentHTML: contentDOM.html() || "",
+    title: $title.text(),
+    content: $content.text() || "",
+    contentHTML: $content.html() || "",
     attachments: announcementAttachmentsParser($),
     extra: {},
   };
