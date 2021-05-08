@@ -2,6 +2,7 @@ import type { StandardPackage } from "./types";
 import fs from "fs";
 import path from "path";
 import { logger } from "../loggers";
+import { existedInRoot } from "../utils/existedInRoot";
 
 /**
  * Serialize the standard package data.
@@ -32,8 +33,12 @@ export async function createStandardPackageFile(root: string, pkg: StandardPacka
 
   log.debug("creating folders that wasn't created before");
   const parentFolder = path.join(filePath, "..");
-  if (!fs.existsSync(parentFolder)) await fs.promises.mkdir(parentFolder, { recursive: true });
+  log.debug("  - checking if the folder has been created");
+  if (!existedInRoot(parentFolder)) {
+    log.debug("    - NO, create it then continue");
+    await fs.promises.mkdir(parentFolder, { recursive: true });
+  } else log.debug("    - YES, continue");
 
-  log.debug(`writing the serialized standard package data to ${filePath}`);
+  log.info(`writing the serialized standard package data to ${filePath}`);
   return fs.promises.writeFile(filePath, serializeStandardPackageData(pkg));
 }
