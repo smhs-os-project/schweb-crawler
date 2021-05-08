@@ -1,0 +1,28 @@
+name: Get announcements
+
+on:
+  push:
+    paths:
+      - 'dist/**'
+  schedule:
+    # https://crontab.guru
+    - cron: '16 6/3 * * 1-5'
+    - cron: '43 10,16,20 * * 6,0'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@master
+      with:
+        node-version: 14
+    - run: yarn
+    - run: node ./dist/index.js
+    - uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        repository: smhs-os-project/smhs-announcements
+        message: "Update announcements to ${date}"
