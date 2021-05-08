@@ -2,13 +2,26 @@ import fetch from "node-fetch";
 import cheerio from "cheerio";
 import { availableProcessors } from "./processors/available";
 import { createStandardPackageFile } from "./stdpkg";
+import { StandardPackage } from "./stdpkg/types";
+import { SOURCE_URL } from "./consts";
 
 export async function main() {
-  const html = await fetch("http://www.smhs.kh.edu.tw").then(r => r.text());
+  const html = await fetch(SOURCE_URL).then(r => r.text());
   const $ = cheerio.load(html);
 
+  // The package list.
+  const packages: StandardPackage<unknown>[] = [];
+
   // Execute processors to make the data packages.
-  const packages = availableProcessors.map(p => p($));
+  availableProcessors.forEach(p => {
+    const thePackage = p($);
+
+    if (Array.isArray(thePackage)) {
+      packages.push(...thePackage);
+    } else {
+      packages.push(thePackage);
+    }
+  });
 
   // Then, make these packages a JSON file.
   packages.forEach((p) => createStandardPackageFile("./data", p));

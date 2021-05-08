@@ -1,7 +1,7 @@
-import { CheerioAPI } from "cheerio";
-import { StandardPackage } from "../stdpkg/types";
+import type { CheerioAPI } from "cheerio";
+import type { StandardPackage } from "../stdpkg/types";
 
 /**
  * A standard processors.
  */
-export type Processors = ($: CheerioAPI) => StandardPackage<unknown>;
+export type Processors = ($: CheerioAPI) => StandardPackage<unknown> | StandardPackage<unknown>[];

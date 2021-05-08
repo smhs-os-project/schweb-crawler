@@ -8,7 +8,7 @@ export interface Announcement {
   /**
    * The title of this announcement.
    */
-  name: string;
+  title: string;
   /**
    * The url of this announcement.
    */
@@ -22,7 +22,35 @@ export interface Announcement {
 /**
  * The fetched announcement list.
  *
- * Inside the list, it is the ID of the announcement. It
- * is used on preventing
+ * Inside the list, it is the ID of the announcement. Useful
+ * on preventing re-fetching the fetched announcement.
  */
 export type FetchedAnnouncementList = [];
+
+export interface AnnouncementContent<T = {}> {
+  /**
+   * The title of this announcement.
+   */
+  title: string;
+  /**
+   * The announcement body.
+   */
+  content: string;
+  /**
+   * The attachments of this announcement.
+   */
+  attachments: {
+    /**
+     * The name of this attachment.
+     */
+    name: string;
+    /**
+     * The url of this attachment.
+     */
+    url: string;
+  },
+  /**
+   * The extra information of this announcement.
+   */
+  extra: T,
+};
