@@ -12,9 +12,5 @@ exports.StudyAnnouncements = Announcements_1.default("#Dyn_2_3 a", "study");
 exports.ContestAnnouncements = Announcements_1.default("#Dyn_1_2_1 a", "contest");
 exports.AnnouncementsProcessors = [
     exports.LawAnnouncements,
-    exports.SchoolAnnouncements,
-    exports.GradeAnnouncements,
-    exports.StudyAnnouncements,
-    exports.ContestAnnouncements,
 ];
 //# sourceMappingURL=index.js.map

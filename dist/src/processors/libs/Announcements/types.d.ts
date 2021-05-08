@@ -2,15 +2,18 @@ export interface Announcement {
     id: string;
     title: string;
     url: string;
+    content: string;
 }
-export declare type FetchedAnnouncementList = [];
+export interface AnnouncementAttachments<T = {}> {
+    name: string;
+    url: string;
+    extra?: T;
+}
 export interface AnnouncementContent<T = {}> {
     title: string;
     content: string;
-    attachments: {
-        name: string;
-        url: string;
-    };
-    extra: T;
+    contentHTML: string;
+    attachments: AnnouncementAttachments[];
+    extra?: T;
 }
 //# sourceMappingURL=types.d.ts.map
