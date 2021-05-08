@@ -32,7 +32,7 @@ export async function createStandardPackageFile(root: string, pkg: StandardPacka
   const filePath = path.join(root, pkg.filename);
 
   log.debug("creating folders that wasn't created before");
-  const parentFolder = path.join(filePath, "..");
+  const parentFolder = path.join(pkg.filename, "..");
   log.debug("  - checking if the folder has been created");
   if (!existedInRoot(parentFolder)) {
     log.debug("    - NO, create it then continue");
