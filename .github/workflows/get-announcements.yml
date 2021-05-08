@@ -33,5 +33,7 @@ jobs:
     - name: Commit and push to A.R.
       run: |
         cd ../announce
+        git config user.email "sw@imych.one"
+        git config user.name "SMHS Open Source Organization"
         git commit -m "update the announcement"
         git push
