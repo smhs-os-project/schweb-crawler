@@ -21,6 +21,7 @@ jobs:
       run: |
         rm -rf data
         git clone https://.:${{ secrets.SCHWEB_TOKEN }}@github.com/smhs-os-project/smhs-announcements data
+        chmod -R 0777 data
     - name: Use Node.js 14.x
       uses: actions/setup-node@master
       with:
