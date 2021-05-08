@@ -617,7 +617,7 @@
         "affectsGlobalScope": false
       },
       "../src/stdpkg/index.ts": {
-        "version": "868dc14bf1b081141206ee1e28251ab26940e87b7465125c81067489702d4599",
+        "version": "0d652468a3d4543a9684dc1e247c01b58605115c6284d131185a7f33ac1fb1b3",
         "signature": "326d7022856cc75ac2ade66b5cb4bd79b70b81bf52f9553113a2aab46eb0ff38",
         "affectsGlobalScope": false
       },

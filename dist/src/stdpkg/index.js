@@ -7,7 +7,10 @@ exports.createStandardPackageFile = exports.serializeStandardPackageData = void 
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const path_1 = __importDefault(require("path"));
 function serializeStandardPackageData({ data }) {
-    return JSON.stringify(data);
+    return JSON.stringify({
+        at: (new Date()).toISOString(),
+        data,
+    });
 }
 exports.serializeStandardPackageData = serializeStandardPackageData;
 async function createStandardPackageFile(root, pkg) {
