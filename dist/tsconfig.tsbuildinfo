@@ -587,7 +587,7 @@
         "affectsGlobalScope": false
       },
       "../src/loggers/index.ts": {
-        "version": "bcbf470a2d3e9668bcd586a8b5f6f01c5a937bc25a2dc88a79accb893c41e636",
+        "version": "86cee0e4a1f3efb4cbf6aa93ef66e8516261e1ae600cb6f2654121e4a7053646",
         "signature": "0626dda1d6539d126b493a611a3e1ab1e877dcd0eb61d01bd49bcff70fa76ae7",
         "affectsGlobalScope": false
       },
@@ -672,7 +672,7 @@
         "affectsGlobalScope": false
       },
       "../src/stdpkg/index.ts": {
-        "version": "b8492466eb18554bb0bac2f7a53f1fd66b4b783e04f7b89b4d4dc6152d70ebe6",
+        "version": "ee44d3c813d5ed2e0410cf09f61f0fa6699d7ec823d6a61023d7c4aa3a77137f",
         "signature": "326d7022856cc75ac2ade66b5cb4bd79b70b81bf52f9553113a2aab46eb0ff38",
         "affectsGlobalScope": false
       },
@@ -1272,8 +1272,7 @@
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/path.d.ts",
         "../src/loggers/index.ts",
-        "../src/stdpkg/types.ts",
-        "../src/utils/existedinroot.ts"
+        "../src/stdpkg/types.ts"
       ],
       "../src/utils/existedinroot.test.ts": [
         "../src/utils/existedinroot.ts"
