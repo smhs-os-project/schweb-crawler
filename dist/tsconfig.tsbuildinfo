@@ -662,7 +662,7 @@
         "affectsGlobalScope": false
       },
       "../src/processors/announcements/index.ts": {
-        "version": "00f38cad8dcd3abcbbefddaf274e8b8772a658502378b3dec86d956206756eca",
+        "version": "97c048795b02b31500b9a930811325046d88b71eef679ce16dbb33ddc23dc655",
         "signature": "75550536d61b7e56c4308465b8db8c44c247ae66d7540d0e8aea3da82a268704",
         "affectsGlobalScope": false
       },
