@@ -4,7 +4,7 @@ import { getParseCheerio } from "../../../utils/getParseCheerio";
 import type { AnnouncementAttachments, AnnouncementContent } from "./types";
 
 export async function AnnouncementContentProcessor(url: string, identifier: string = "unnamed"): Promise<AnnouncementContent | null> {
-  const log = logger(`processors.libs.Announcements.content.AnnouncementContentProcessor#${identifier}`);
+  const log = logger("processors.libs.Announcements.content.AnnouncementContentProcessor", { identifier });
 
   log.debug("getting the URL data");
   const $ = await getParseCheerio(url);
@@ -20,7 +20,7 @@ export async function AnnouncementContentProcessor(url: string, identifier: stri
  * @param identifier The identifier of this action.
  */
 function announcementAttachmentsParser($: CheerioAPI, identifier: string): AnnouncementAttachments[] {
-  const log = logger(`processors.libs.Announcements.content.announcementAttachmentsParser#${identifier}`);
+  const log = logger("processors.libs.Announcements.content.announcementAttachmentsParser", { identifier });
   const attachments: AnnouncementAttachments[] = [];
 
   log.debug("extracting the attachments");
@@ -28,7 +28,7 @@ function announcementAttachmentsParser($: CheerioAPI, identifier: string): Annou
 
   log.debug("start running each function");
   $attachments.each(function (id) {
-    const log = logger(`processors.libs.Announcements.content.announcementAttachmentsParser#${identifier};Each:${id}`);
+    const log = logger("processors.libs.Announcements.content.announcementAttachmentsParser", { identifier, each: id });
 
     log.debug("extracting 'title' attribute");
     const name = $(this).attr("title");
@@ -59,7 +59,7 @@ function announcementAttachmentsParser($: CheerioAPI, identifier: string): Annou
  * @param identifier The identifier of this action.
  */
 function announcementContentParser($: CheerioAPI, identifier: string): AnnouncementContent | null {
-  const log = logger(`processors.libs.Announcements.content.announcementContentParser#${identifier}`);
+  const log = logger("processors.libs.Announcements.content.announcementContentParser", { identifier });
 
   log.debug("getting the title DOM");
   const $title = $(".hdline");

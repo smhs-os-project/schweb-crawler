@@ -19,7 +19,7 @@ export async function Announcements(
 
   log.debug(`selecting ${selector} and running each function`);
   $(selector).each(function (id) {
-    const log = logger(`processors.libs.Announcements.index.Announcements#Prefix:${prefix};Each:${id}`);
+    const log = logger("processors.libs.Announcements.index.Announcements", { prefix, each: id });
 
     log.debug("Extracting 'title' attribute");
     const title = $(this).attr("title");
