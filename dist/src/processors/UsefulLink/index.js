@@ -6,7 +6,7 @@ async function UsefulLink($) {
     const data = [];
     log.debug("selecting `#Dyn_1_1 a` and running a 'each' function");
     $("#Dyn_1_1 a").each(function (id) {
-        const log = loggers_1.logger(`processors.UsefulLink.UsefulLink#Each:${id}`);
+        const log = loggers_1.logger("processors.UsefulLink.UsefulLink", { each: id });
         log.debug(`getting 'href' attribute`);
         const link = $(this).attr("href");
         log.debug(`checking if the 'href' attribute is in this element`);

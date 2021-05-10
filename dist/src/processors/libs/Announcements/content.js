@@ -3,22 +3,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AnnouncementContentProcessor = void 0;
 const loggers_1 = require("../../../loggers");
 const getParseCheerio_1 = require("../../../utils/getParseCheerio");
-async function AnnouncementContentProcessor(url) {
-    const log = loggers_1.logger("processors.libs.Announcements.content.AnnouncementContentProcessor");
+async function AnnouncementContentProcessor(url, identifier = "unnamed") {
+    const log = loggers_1.logger("processors.libs.Announcements.content.AnnouncementContentProcessor", { identifier });
     log.debug("getting the URL data");
     const $ = await getParseCheerio_1.getParseCheerio(url);
     log.debug("parsing the data and return it");
-    return announcementContentParser($);
+    return announcementContentParser($, identifier);
 }
 exports.AnnouncementContentProcessor = AnnouncementContentProcessor;
-function announcementAttachmentsParser($) {
-    const log = loggers_1.logger("processors.libs.Announcements.content.announcementAttachmentsParser");
+function announcementAttachmentsParser($, identifier) {
+    const log = loggers_1.logger("processors.libs.Announcements.content.announcementAttachmentsParser", { identifier });
     const attachments = [];
     log.debug("extracting the attachments");
     const $attachments = $(".mptattach a");
     log.debug("start running each function");
     $attachments.each(function (id) {
-        const log = loggers_1.logger(`processors.libs.Announcements.content.announcementAttachmentsParser#Each:${id}`);
+        const log = loggers_1.logger("processors.libs.Announcements.content.announcementAttachmentsParser", { identifier, each: id });
         log.debug("extracting 'title' attribute");
         const name = $(this).attr("title");
         log.debug("extracting 'href' attribute");
@@ -39,12 +39,12 @@ function announcementAttachmentsParser($) {
     });
     return attachments;
 }
-function announcementContentParser($) {
-    const log = loggers_1.logger("processors.libs.Announcements.content.announcementContentParser");
+function announcementContentParser($, identifier) {
+    const log = loggers_1.logger("processors.libs.Announcements.content.announcementContentParser", { identifier });
     log.debug("getting the title DOM");
     const $title = $(".hdline");
     log.debug("getting the content DOM");
-    const $content = $(".meditor");
+    const $content = $(".mcont .meditor");
     log.debug("checking if the titleDOM is empty");
     if (!$title.text()) {
         log.debug("YES: the titleDOM is empty.");
@@ -59,7 +59,7 @@ function announcementContentParser($) {
         title: $title.text(),
         content: $content.text() || "",
         contentHTML: $content.html() || "",
-        attachments: announcementAttachmentsParser($),
+        attachments: announcementAttachmentsParser($, identifier),
         extra: {},
     };
 }

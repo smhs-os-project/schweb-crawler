@@ -10,6 +10,7 @@ const loggers_1 = require("../loggers");
 async function getParseCheerio(url) {
     const log = loggers_1.logger("utils.getParseCheerio");
     log.debug("getting the HTML raw data");
+    log.debug(`URL: ${url}`);
     const html = await node_fetch_1.default(url).then(r => r.text());
     log.debug("load the data as a CheerioAPI");
     return cheerio_1.default.load(html);

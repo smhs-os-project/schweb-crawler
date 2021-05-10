@@ -12,7 +12,8 @@ async function main() {
     log.debug(`Crawling: Homepage: ${consts_1.SOURCE_URL}`);
     const $ = await getParseCheerio_1.getParseCheerio(consts_1.SOURCE_URL);
     log.debug("Execute processors to make the data packages...");
-    const promises = available_1.availableProcessors.map(async (p) => {
+    const promises = available_1.availableProcessors.map(async (p, index) => {
+        const log = loggers_1.logger("index.main", { processor: p.name, processorIndex: index });
         log.info(`Running processors: ${p.name}`);
         const thePackage = await p($);
         log.debug("Checking if the package is an array");
