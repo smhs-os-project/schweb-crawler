@@ -19,7 +19,7 @@ export async function Announcements(
 
   log.debug(`selecting ${selector} and running each function`);
   $(selector).each(function (id) {
-    const log = logger(`processors.libs.Announcements.index.Announcements#Each:${id}`);
+    const log = logger(`processors.libs.Announcements.index.Announcements#Prefix:${prefix};Each:${id}`);
 
     log.debug("Extracting 'title' attribute");
     const title = $(this).attr("title");
@@ -53,7 +53,7 @@ export async function Announcements(
       log.debug("  - checking if the content has created before")
       if (!existedInRoot(contentFilename)) {
         log.debug("    - NO. fetching and creating the content");
-        const content = AnnouncementContentProcessor(url);
+        const content = AnnouncementContentProcessor(url, `${prefix}-${id}`);
 
         promises.push(content.then((data) => {
           log.debug("pushing the processed announcements content packages to 'packages'");
