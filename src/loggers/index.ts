@@ -2,7 +2,7 @@ import pino from "pino";
 
 export const rootLogger = pino({
   name: "schweb-crawler",
-  level: "debug",
+  level: "info",
 });
 
 /**

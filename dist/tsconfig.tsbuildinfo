@@ -587,7 +587,7 @@
         "affectsGlobalScope": false
       },
       "../src/loggers/index.ts": {
-        "version": "3766040893ae207779c79484b974505e02fffeafb77ab7be05b44cc7827cef18",
+        "version": "86ef67196b2f468de4b3041e922217805f459ae48222dc81115b084478743620",
         "signature": "c3cb1fc9fd2866024105738000de5d46b36c09ca829bd94278275e3b1b7683b5",
         "affectsGlobalScope": false
       },

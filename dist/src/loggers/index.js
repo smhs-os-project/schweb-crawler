@@ -7,7 +7,7 @@ exports.logger = exports.rootLogger = void 0;
 const pino_1 = __importDefault(require("pino"));
 exports.rootLogger = pino_1.default({
     name: "schweb-crawler",
-    level: "debug",
+    level: "info",
 });
 const logger = (component, extra = {}) => exports.rootLogger.child({ component, ...extra });
 exports.logger = logger;
