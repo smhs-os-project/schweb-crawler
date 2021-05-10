@@ -26,8 +26,8 @@ export async function Announcements(
     log.debug("Extracting 'href' attribute")
     const url = $(this).attr("href");
 
-    log.debug("Checking if title and url are existed");
-    if (title && url) {
+    log.debug("Checking if title and url are existed and the title isn't '更多...'");
+    if (title && url && title !== "更多...") {
       log.debug("YES: continue processing");
       log.info(`Processing: [${prefix}] ${title}`)
 
