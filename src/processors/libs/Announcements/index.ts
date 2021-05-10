@@ -63,7 +63,7 @@ export async function Announcements(
           });
         }).catch(log.error));
       } else log.debug("    - YES. will not fetch it.");
-    }
+    } else log.debug("NO: stop processing")
   });
 
   log.debug("Waiting for all promises completed");
