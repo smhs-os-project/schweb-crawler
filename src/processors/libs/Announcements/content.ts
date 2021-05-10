@@ -62,7 +62,7 @@ function announcementContentParser($: CheerioAPI): AnnouncementContent | null {
   log.debug("getting the title DOM");
   const $title = $(".hdline");
   log.debug("getting the content DOM");
-  const $content = $(".meditor");
+  const $content = $(".mcont .meditor");
 
   log.debug("checking if the titleDOM is empty");
   if (!$title.text()) {
