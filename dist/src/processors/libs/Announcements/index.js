@@ -11,8 +11,11 @@ async function Announcements($, selector, prefix) {
     const announcements = [];
     const promises = [];
     log.debug(`selecting ${selector} and running each function`);
-    $(selector).each(function (id) {
-        const log = loggers_1.logger("processors.libs.Announcements.index.Announcements", { prefix, each: id });
+    $(selector).each(function AnnouncementsEachFunction(each) {
+        const log = loggers_1.logger("processors.libs.Announcements.index.Announcements.AnnouncementsEachFunction", {
+            prefix,
+            each,
+        });
         log.debug("Extracting 'title' attribute");
         const title = $(this).attr("title");
         log.debug("Extracting 'href' attribute");
@@ -41,13 +44,15 @@ async function Announcements($, selector, prefix) {
             if (!existedInRoot_1.existedInRoot(contentFilename)) {
                 log.debug("    - NO. fetching and creating the content");
                 const content = content_1.AnnouncementContentProcessor(url, `${prefix}-${id}`);
-                promises.push(content.then((data) => {
+                promises.push(content
+                    .then((data) => {
                     log.debug("pushing the processed announcements content packages to 'packages'");
                     packages.push({
                         filename: contentFilename,
                         data: data,
                     });
-                }).catch(log.error));
+                })
+                    .catch(log.error));
             }
             else
                 log.debug("    - YES. will not fetch it.");

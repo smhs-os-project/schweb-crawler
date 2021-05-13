@@ -3,22 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AnnouncementContentProcessor = void 0;
 const loggers_1 = require("../../../loggers");
 const getParseCheerio_1 = require("../../../utils/getParseCheerio");
-async function AnnouncementContentProcessor(url, identifier = "unnamed") {
-    const log = loggers_1.logger("processors.libs.Announcements.content.AnnouncementContentProcessor", { identifier });
-    log.debug("getting the URL data");
-    const $ = await getParseCheerio_1.getParseCheerio(url);
-    log.debug("parsing the data and return it");
-    return announcementContentParser($, identifier);
-}
-exports.AnnouncementContentProcessor = AnnouncementContentProcessor;
 function announcementAttachmentsParser($, identifier) {
     const log = loggers_1.logger("processors.libs.Announcements.content.announcementAttachmentsParser", { identifier });
     const attachments = [];
     log.debug("extracting the attachments");
     const $attachments = $(".mptattach a");
     log.debug("start running each function");
-    $attachments.each(function (id) {
-        const log = loggers_1.logger("processors.libs.Announcements.content.announcementAttachmentsParser", { identifier, each: id });
+    $attachments.each(function attachmentsEachFunction(each) {
+        const log = loggers_1.logger("processors.libs.Announcements.content.announcementAttachmentsParser.attachmentsEachFunction", { identifier, each });
         log.debug("extracting 'title' attribute");
         const name = $(this).attr("title");
         log.debug("extracting 'href' attribute");
@@ -52,8 +44,7 @@ function announcementContentParser($, identifier) {
         log.warn($.html() || "<no data>");
         return null;
     }
-    else
-        log.debug("NO: continue");
+    log.debug("NO: continue");
     log.debug("returning the content");
     return {
         title: $title.text(),
@@ -63,4 +54,12 @@ function announcementContentParser($, identifier) {
         extra: {},
     };
 }
+async function AnnouncementContentProcessor(url, identifier = "unnamed") {
+    const log = loggers_1.logger("processors.libs.Announcements.content.AnnouncementContentProcessor", { identifier });
+    log.debug("getting the URL data");
+    const $ = await getParseCheerio_1.getParseCheerio(url);
+    log.debug("parsing the data and return it");
+    return announcementContentParser($, identifier);
+}
+exports.AnnouncementContentProcessor = AnnouncementContentProcessor;
 //# sourceMappingURL=content.js.map

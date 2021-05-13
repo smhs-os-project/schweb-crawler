@@ -7,11 +7,11 @@ exports.createStandardPackageFile = exports.serializeStandardPackageData = void 
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const loggers_1 = require("../loggers");
-function serializeStandardPackageData({ data }) {
+function serializeStandardPackageData({ data, }) {
     const log = loggers_1.logger("stdpkg.index.serializeStandardPackageData");
     log.debug("serializing a StandardPackage");
     return JSON.stringify({
-        at: (new Date()).toISOString(),
+        at: new Date().toISOString(),
         data,
     });
 }
