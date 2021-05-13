@@ -10,8 +10,11 @@ export default async function UsefulLink(
   const data: UsefulLinkStructure[] = [];
 
   log.debug("selecting `#Dyn_1_1 a` and running a 'each' function");
-  $("#Dyn_1_1 a").each(function (id) {
-    const log = logger("processors.UsefulLink.UsefulLink", { each: id });
+  $("#Dyn_1_1 a").each(function UsefulLinkEachFunction(each) {
+    const log = logger(
+      "processors.UsefulLink.UsefulLink.UsefulLinkEachFunction",
+      { each }
+    );
     log.debug(`getting 'href' attribute`);
     const link = $(this).attr("href");
 

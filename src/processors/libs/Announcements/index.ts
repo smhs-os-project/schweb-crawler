@@ -18,11 +18,14 @@ export async function Announcements(
   const promises: Promise<void>[] = [];
 
   log.debug(`selecting ${selector} and running each function`);
-  $(selector).each(function (id) {
-    const log = logger("processors.libs.Announcements.index.Announcements", {
-      prefix,
-      each: id,
-    });
+  $(selector).each(function AnnouncementsEachFunction(each) {
+    const log = logger(
+      "processors.libs.Announcements.index.Announcements.AnnouncementsEachFunction",
+      {
+        prefix,
+        each,
+      }
+    );
 
     log.debug("Extracting 'title' attribute");
     const title = $(this).attr("title");

@@ -3,22 +3,6 @@ import { logger } from "../../../loggers";
 import { getParseCheerio } from "../../../utils/getParseCheerio";
 import type { AnnouncementAttachments, AnnouncementContent } from "./types";
 
-export async function AnnouncementContentProcessor(
-  url: string,
-  identifier: string = "unnamed"
-): Promise<AnnouncementContent | null> {
-  const log = logger(
-    "processors.libs.Announcements.content.AnnouncementContentProcessor",
-    { identifier }
-  );
-
-  log.debug("getting the URL data");
-  const $ = await getParseCheerio(url);
-
-  log.debug("parsing the data and return it");
-  return announcementContentParser($, identifier);
-}
-
 /**
  * Process the attachments in the announcement
  *
@@ -39,10 +23,10 @@ function announcementAttachmentsParser(
   const $attachments = $(".mptattach a");
 
   log.debug("start running each function");
-  $attachments.each(function (id) {
+  $attachments.each(function attachmentsEachFunction(each) {
     const log = logger(
-      "processors.libs.Announcements.content.announcementAttachmentsParser",
-      { identifier, each: id }
+      "processors.libs.Announcements.content.announcementAttachmentsParser.attachmentsEachFunction",
+      { identifier, each }
     );
 
     log.debug("extracting 'title' attribute");
@@ -104,4 +88,20 @@ function announcementContentParser(
     attachments: announcementAttachmentsParser($, identifier),
     extra: {},
   };
+}
+
+export async function AnnouncementContentProcessor(
+  url: string,
+  identifier: string = "unnamed"
+): Promise<AnnouncementContent | null> {
+  const log = logger(
+    "processors.libs.Announcements.content.AnnouncementContentProcessor",
+    { identifier }
+  );
+
+  log.debug("getting the URL data");
+  const $ = await getParseCheerio(url);
+
+  log.debug("parsing the data and return it");
+  return announcementContentParser($, identifier);
 }
