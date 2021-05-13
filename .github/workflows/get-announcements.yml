@@ -7,8 +7,8 @@ on:
       - '.github/workflows/**'
   schedule:
     # https://crontab.guru
-    - cron: '16 6/3 * * 1-5'
-    - cron: '43 10,16,20 * * 6,0'
+    - cron: '23 */4 * * MON-FRI'
+    - cron: '49 */8 * * SAT,SUN'
   workflow_dispatch:
 
 jobs:
