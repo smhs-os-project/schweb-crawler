@@ -54,5 +54,5 @@ export interface AnnouncementContent<T = {}> {
   /**
    * The extra information of this announcement.
    */
-  extra?: T,
-};
+  extra?: T;
+}

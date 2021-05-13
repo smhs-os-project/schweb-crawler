@@ -3,7 +3,9 @@ import { logger } from "../../loggers";
 import type { StandardPackage } from "../../stdpkg/types";
 import type { UsefulLinkStructure } from "./types";
 
-export default async function UsefulLink($: CheerioAPI): Promise<StandardPackage<UsefulLinkStructure[]>> {
+export default async function UsefulLink(
+  $: CheerioAPI
+): Promise<StandardPackage<UsefulLinkStructure[]>> {
   const log = logger("processors.UsefulLink.UsefulLink");
   const data: UsefulLinkStructure[] = [];
 
@@ -18,7 +20,7 @@ export default async function UsefulLink($: CheerioAPI): Promise<StandardPackage
       log.debug(`YES: pushing to the list`);
 
       const name = $(this).text().trim();
-      log.info(`Processing: ${name}`)
+      log.info(`Processing: ${name}`);
       data.push({
         name,
         link,

@@ -10,4 +10,7 @@ export const rootLogger = pino({
  * @param component The component namespace.
  * @param extra The extra information.
  */
-export const logger = (component: string, extra: Record<string, unknown> = {}) => rootLogger.child({component, ...extra});
+export const logger = (
+  component: string,
+  extra: Record<string, unknown> = {}
+) => rootLogger.child({ component, ...extra });

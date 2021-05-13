@@ -7,7 +7,7 @@ export async function getParseCheerio(url: string): Promise<CheerioAPI> {
 
   log.debug("getting the HTML raw data");
   log.debug(`URL: ${url}`);
-  const html = await fetch(url).then(r => r.text());
+  const html = await fetch(url).then((r) => r.text());
 
   log.debug("load the data as a CheerioAPI");
   return cheerio.load(html);

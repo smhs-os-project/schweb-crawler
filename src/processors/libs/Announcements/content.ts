@@ -3,8 +3,14 @@ import { logger } from "../../../loggers";
 import { getParseCheerio } from "../../../utils/getParseCheerio";
 import type { AnnouncementAttachments, AnnouncementContent } from "./types";
 
-export async function AnnouncementContentProcessor(url: string, identifier: string = "unnamed"): Promise<AnnouncementContent | null> {
-  const log = logger("processors.libs.Announcements.content.AnnouncementContentProcessor", { identifier });
+export async function AnnouncementContentProcessor(
+  url: string,
+  identifier: string = "unnamed"
+): Promise<AnnouncementContent | null> {
+  const log = logger(
+    "processors.libs.Announcements.content.AnnouncementContentProcessor",
+    { identifier }
+  );
 
   log.debug("getting the URL data");
   const $ = await getParseCheerio(url);
@@ -19,8 +25,14 @@ export async function AnnouncementContentProcessor(url: string, identifier: stri
  * @param $ The attachment links of the announcement page.
  * @param identifier The identifier of this action.
  */
-function announcementAttachmentsParser($: CheerioAPI, identifier: string): AnnouncementAttachments[] {
-  const log = logger("processors.libs.Announcements.content.announcementAttachmentsParser", { identifier });
+function announcementAttachmentsParser(
+  $: CheerioAPI,
+  identifier: string
+): AnnouncementAttachments[] {
+  const log = logger(
+    "processors.libs.Announcements.content.announcementAttachmentsParser",
+    { identifier }
+  );
   const attachments: AnnouncementAttachments[] = [];
 
   log.debug("extracting the attachments");
@@ -28,7 +40,10 @@ function announcementAttachmentsParser($: CheerioAPI, identifier: string): Annou
 
   log.debug("start running each function");
   $attachments.each(function (id) {
-    const log = logger("processors.libs.Announcements.content.announcementAttachmentsParser", { identifier, each: id });
+    const log = logger(
+      "processors.libs.Announcements.content.announcementAttachmentsParser",
+      { identifier, each: id }
+    );
 
     log.debug("extracting 'title' attribute");
     const name = $(this).attr("title");
@@ -37,7 +52,7 @@ function announcementAttachmentsParser($: CheerioAPI, identifier: string): Annou
 
     log.debug("checking if name & url are not undefined");
     if (name && url) {
-      log.debug("YES: pushing these to 'attachments'")
+      log.debug("YES: pushing these to 'attachments'");
       attachments.push({
         name,
         url,
@@ -58,8 +73,14 @@ function announcementAttachmentsParser($: CheerioAPI, identifier: string): Annou
  * @param $ The announcement page.
  * @param identifier The identifier of this action.
  */
-function announcementContentParser($: CheerioAPI, identifier: string): AnnouncementContent | null {
-  const log = logger("processors.libs.Announcements.content.announcementContentParser", { identifier });
+function announcementContentParser(
+  $: CheerioAPI,
+  identifier: string
+): AnnouncementContent | null {
+  const log = logger(
+    "processors.libs.Announcements.content.announcementContentParser",
+    { identifier }
+  );
 
   log.debug("getting the title DOM");
   const $title = $(".hdline");
@@ -68,11 +89,12 @@ function announcementContentParser($: CheerioAPI, identifier: string): Announcem
 
   log.debug("checking if the titleDOM is empty");
   if (!$title.text()) {
-    log.debug("YES: the titleDOM is empty.")
+    log.debug("YES: the titleDOM is empty.");
     log.warn("Weird case: The '.hdline' class isn't there");
     log.warn($.html() || "<no data>");
     return null;
-  } else log.debug("NO: continue");
+  }
+  log.debug("NO: continue");
 
   log.debug("returning the content");
   return {

@@ -16,7 +16,10 @@ export async function main() {
 
   log.debug("Execute processors to make the data packages...");
   const promises = availableProcessors.map(async (p, index) => {
-    const log = logger("index.main", { processor: p.name, processorIndex: index });
+    const log = logger("index.main", {
+      processor: p.name,
+      processorIndex: index,
+    });
     log.info(`Running processors: ${p.name}`);
     const thePackage = await p($);
 

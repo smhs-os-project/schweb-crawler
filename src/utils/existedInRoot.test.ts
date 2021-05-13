@@ -1,4 +1,4 @@
-import { existedInRoot } from "./existedInRoot"
+import { existedInRoot } from "./existedInRoot";
 
 test("the existed case", () => {
   existedInRoot(".gitkeep");
