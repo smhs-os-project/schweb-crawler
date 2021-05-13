@@ -17,6 +17,14 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "@typescript-eslint/no-shadow": [
+      2,
+      {
+        allow: [
+          "log",
+        ],
+      },
+    ],
   },
 };
