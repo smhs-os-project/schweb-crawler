@@ -39,7 +39,7 @@ function announcementAttachmentsParser(
       log.debug("YES: pushing these to 'attachments'");
       attachments.push({
         name,
-        url,
+        url: `http://www.smhs.kh.edu.tw${url}`,
       });
     } else {
       log.debug("NO.");
