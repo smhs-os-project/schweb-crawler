@@ -662,8 +662,8 @@
         "affectsGlobalScope": false
       },
       "../src/processors/announcements/index.ts": {
-        "version": "a00d0497d3ff65c0309c13b4e8bc3535e18485e662a786cd2b58c9f0d22bb2ff",
-        "signature": "75550536d61b7e56c4308465b8db8c44c247ae66d7540d0e8aea3da82a268704",
+        "version": "26d1bc895d279eada7dd1d698934a11bcf76480c258c00af37a3cc2b2e2b5236",
+        "signature": "724a01c5649674594a8a13dc84329a9aefb59f80340e31546624e19333020f99",
         "affectsGlobalScope": false
       },
       "../src/processors/available.ts": {
