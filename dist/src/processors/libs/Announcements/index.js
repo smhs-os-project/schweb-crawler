@@ -52,7 +52,7 @@ async function Announcements($, selector, prefix) {
                         data: data,
                     });
                 })
-                    .catch(log.error));
+                    .catch(log.error.bind(log)));
             }
             else
                 log.debug("    - YES. will not fetch it.");

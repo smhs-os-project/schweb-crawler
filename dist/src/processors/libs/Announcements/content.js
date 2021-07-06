@@ -3,6 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AnnouncementContentProcessor = void 0;
 const loggers_1 = require("../../../loggers");
 const getParseCheerio_1 = require("../../../utils/getParseCheerio");
+function relativeUrlParser(url) {
+    if (url.startsWith("http"))
+        return url;
+    return `http://www.smhs.kh.edu.tw/${url.replace(/^\//, "")}`;
+}
 function announcementAttachmentsParser($, identifier) {
     const log = loggers_1.logger("processors.libs.Announcements.content.announcementAttachmentsParser", { identifier });
     const attachments = [];
@@ -20,7 +25,7 @@ function announcementAttachmentsParser($, identifier) {
             log.debug("YES: pushing these to 'attachments'");
             attachments.push({
                 name,
-                url: `http://www.smhs.kh.edu.tw${url}`,
+                url: relativeUrlParser(url),
             });
         }
         else {
@@ -57,7 +62,7 @@ function announcementContentParser($, identifier) {
 async function AnnouncementContentProcessor(url, identifier = "unnamed") {
     const log = loggers_1.logger("processors.libs.Announcements.content.AnnouncementContentProcessor", { identifier });
     log.debug("getting the URL data");
-    const $ = await getParseCheerio_1.getParseCheerio(url);
+    const $ = await getParseCheerio_1.getParseCheerio(relativeUrlParser(url));
     log.debug("parsing the data and return it");
     return announcementContentParser($, identifier);
 }
