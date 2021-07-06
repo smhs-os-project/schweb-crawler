@@ -10,7 +10,7 @@ import type { AnnouncementAttachments, AnnouncementContent } from "./types";
  * @return {string} The converted absolute URL. If the original one is
  * the relative form, its base will be "http://www.smhs.kh.edu.tw".
  */
-function relativeUrlParser(url: string): string {
+export function relativeUrlParser(url: string): string {
   // this includes "http" and "https".
   if (url.startsWith("http")) return url;
 
