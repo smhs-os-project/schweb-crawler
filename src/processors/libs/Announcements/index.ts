@@ -76,7 +76,7 @@ export async function Announcements(
                 data: data as any,
               });
             })
-            .catch(log.error)
+            .catch(log.error.bind(log))
         );
       } else log.debug("    - YES. will not fetch it.");
     } else log.debug("NO: stop processing");
