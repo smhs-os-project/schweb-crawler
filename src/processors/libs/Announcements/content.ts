@@ -4,6 +4,23 @@ import { getParseCheerio } from "../../../utils/getParseCheerio";
 import type { AnnouncementAttachments, AnnouncementContent } from "./types";
 
 /**
+ * Convert a relative URL to the absolute form.
+ *
+ * @param {string} url A url regardless of the absolute one or the relative one.
+ * @return {string} The converted absolute URL. If the original one is
+ * the relative form, its base will be "http://www.smhs.kh.edu.tw".
+ */
+function relativeUrlParser(url: string): string {
+  // this includes "http" and "https".
+  if (url.startsWith("http")) return url;
+
+  // replace all `/uri` to `uri`, and leave `uri` as it is.
+  // smhs.kh.edu.tw doesn't support HTTPS protocol until now,
+  // so DON'T CHANGE http:// to https:// !!
+  return `http://www.smhs.kh.edu.tw/${url.replace(/^\//, "")}`;
+}
+
+/**
  * Process the attachments in the announcement
  *
  * @param $ The attachment links of the announcement page.
@@ -39,7 +56,7 @@ function announcementAttachmentsParser(
       log.debug("YES: pushing these to 'attachments'");
       attachments.push({
         name,
-        url: `http://www.smhs.kh.edu.tw${url}`,
+        url: relativeUrlParser(url),
       });
     } else {
       log.debug("NO.");
@@ -100,7 +117,7 @@ export async function AnnouncementContentProcessor(
   );
 
   log.debug("getting the URL data");
-  const $ = await getParseCheerio(url);
+  const $ = await getParseCheerio(relativeUrlParser(url));
 
   log.debug("parsing the data and return it");
   return announcementContentParser($, identifier);
