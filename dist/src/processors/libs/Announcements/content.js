@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AnnouncementContentProcessor = void 0;
+exports.AnnouncementContentProcessor = exports.relativeUrlParser = void 0;
 const loggers_1 = require("../../../loggers");
 const getParseCheerio_1 = require("../../../utils/getParseCheerio");
 function relativeUrlParser(url) {
@@ -8,6 +8,7 @@ function relativeUrlParser(url) {
         return url;
     return `http://www.smhs.kh.edu.tw/${url.replace(/^\//, "")}`;
 }
+exports.relativeUrlParser = relativeUrlParser;
 function announcementAttachmentsParser($, identifier) {
     const log = loggers_1.logger("processors.libs.Announcements.content.announcementAttachmentsParser", { identifier });
     const attachments = [];
