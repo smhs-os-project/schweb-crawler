@@ -4,13 +4,13 @@ export const SchoolAnnouncements = AnnouncementWrapper(
   "#Dyn_2_1 .mtitle > a",
   "school"
 );
-export const WirelessAnnouncements = AnnouncementWrapper(
-  "#Dyn_2_2 .mtitle > a",
-  "wireless"
-);
 export const TimetableAnnouncements = AnnouncementWrapper(
-  "#Dyn_2_3 .mtitle > a",
+  "#Dyn_2_2 .mtitle > a",
   "timetable"
+);
+export const WirelessAnnouncements = AnnouncementWrapper(
+  "#Dyn_2_3 .mtitle > a",
+  "wireless"
 );
 export const GradeAnnouncements = AnnouncementWrapper(
   "#Dyn_2_4 .mtitle > a",
