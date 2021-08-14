@@ -3,11 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AnnouncementsProcessors = exports.StudyAnnouncements = exports.DocumentsAnnouncements = exports.ContestAnnouncements = exports.LawAnnouncements = exports.GradeAnnouncements = exports.TimetableAnnouncements = exports.WirelessAnnouncements = exports.SchoolAnnouncements = void 0;
+exports.AnnouncementsProcessors = exports.StudyAnnouncements = exports.DocumentsAnnouncements = exports.ContestAnnouncements = exports.LawAnnouncements = exports.GradeAnnouncements = exports.WirelessAnnouncements = exports.TimetableAnnouncements = exports.SchoolAnnouncements = void 0;
 const Announcements_1 = __importDefault(require("../libs/Announcements"));
 exports.SchoolAnnouncements = Announcements_1.default("#Dyn_2_1 .mtitle > a", "school");
-exports.WirelessAnnouncements = Announcements_1.default("#Dyn_2_2 .mtitle > a", "wireless");
-exports.TimetableAnnouncements = Announcements_1.default("#Dyn_2_3 .mtitle > a", "timetable");
+exports.TimetableAnnouncements = Announcements_1.default("#Dyn_2_2 .mtitle > a", "timetable");
+exports.WirelessAnnouncements = Announcements_1.default("#Dyn_2_3 .mtitle > a", "wireless");
 exports.GradeAnnouncements = Announcements_1.default("#Dyn_2_4 .mtitle > a", "grade");
 exports.LawAnnouncements = Announcements_1.default("#Dyn_1_1_1 .mtitle > a", "law");
 exports.ContestAnnouncements = Announcements_1.default("#Dyn_1_2_1 .mtitle > a", "contest");
