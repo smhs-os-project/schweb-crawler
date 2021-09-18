@@ -5,21 +5,25 @@ const js_sha256_1 = require("js-sha256");
 const content_1 = require("./content");
 const loggers_1 = require("../../../loggers");
 const existedInRoot_1 = require("../../../utils/existedInRoot");
-async function Announcements($, selector, prefix) {
+const getClass_1 = require("./getClass");
+async function Announcements($, category, prefix) {
     const log = loggers_1.logger("processors.libs.Announcements.index.Announcements");
     const packages = [];
     const announcements = [];
     const promises = [];
-    log.debug(`selecting ${selector} and running each function`);
-    $(selector).each(function AnnouncementsEachFunction(each) {
+    log.debug(`finding the category "${category}" and running each function`);
+    getClass_1.getNamedBlock($, category)
+        .find(".mtitle > a")
+        .each(function AnnouncementsEachFunction(each) {
+        const entry = $(this);
         const log = loggers_1.logger("processors.libs.Announcements.index.Announcements.AnnouncementsEachFunction", {
             prefix,
             each,
         });
         log.debug("Extracting 'title' attribute");
-        const title = $(this).attr("title");
+        const title = entry.attr("title");
         log.debug("Extracting 'href' attribute");
-        const url = $(this).attr("href");
+        const url = entry.attr("href");
         log.debug("Checking if title and url are existed and the title isn't '更多...'");
         if (title && url && title !== "更多...") {
             log.debug("YES: continue processing");
@@ -65,8 +69,8 @@ async function Announcements($, selector, prefix) {
     return packages;
 }
 exports.Announcements = Announcements;
-function AnnouncementWrapper(selector, prefix) {
-    return ($) => Announcements($, selector, prefix);
+function AnnouncementWrapper(category, prefix) {
+    return ($) => Announcements($, category, prefix);
 }
 exports.default = AnnouncementWrapper;
 //# sourceMappingURL=index.js.map
