@@ -7,8 +7,8 @@ on:
       - '.github/workflows/**'
   schedule:
     # https://crontab.guru
-    - cron: '23 */4 * * MON-FRI'
-    - cron: '49 */8 * * SAT,SUN'
+    - cron: '23 */4 * * 1-5'
+    - cron: '49 */8 * * 0,6'
   workflow_dispatch:
 
 jobs:
@@ -25,6 +25,7 @@ jobs:
       uses: actions/setup-node@master
       with:
         node-version: 14
+        cache: 'yarn'
     - name: Retrieving the dependencies
       run: yarn
     - name: Get the announcements
