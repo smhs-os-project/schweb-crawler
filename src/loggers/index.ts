@@ -5,8 +5,11 @@ const transport = pino.transport({
   options: {
     colorize: process.env['COLORIZE'] === 'true',
     translateTime: true,
-  }
-})
+  },
+  worker: {
+    autoEnd: process.env['NODE_ENV'] !== 'test',
+  },
+});
 
 export const rootLogger = pino({
   name: "schweb-crawler",
