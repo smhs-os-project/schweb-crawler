@@ -17,4 +17,4 @@ jobs:
     - name: Retrieving the dependencies
       run: yarn -D
     - name: Test
-      run: yarn jest
+      run: yarn test
