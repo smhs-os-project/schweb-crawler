@@ -1,12 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const loggers_1 = require("../../loggers");
-async function UsefulLink($) {
-    const log = loggers_1.logger("processors.UsefulLink.UsefulLink");
+import { logger } from "../../loggers";
+export default async function UsefulLink($) {
+    const log = logger("processors.UsefulLink.UsefulLink");
     const data = [];
     log.debug("selecting `#Dyn_1_1 a` and running a 'each' function");
     $("#Dyn_1_1 a").each(function UsefulLinkEachFunction(each) {
-        const log = loggers_1.logger("processors.UsefulLink.UsefulLink.UsefulLinkEachFunction", { each });
+        const log = logger("processors.UsefulLink.UsefulLink.UsefulLinkEachFunction", { each });
         log.debug(`getting 'href' attribute`);
         const link = $(this).attr("href");
         log.debug(`checking if the 'href' attribute is in this element`);
@@ -31,5 +29,4 @@ async function UsefulLink($) {
         data,
     };
 }
-exports.default = UsefulLink;
 //# sourceMappingURL=index.js.map

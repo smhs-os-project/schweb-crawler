@@ -1,24 +1,18 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.AnnouncementsProcessors = exports.StudyAnnouncements = exports.DocumentsAnnouncements = exports.ContestAnnouncements = exports.LawAnnouncements = exports.GradeAnnouncements = exports.NetworkAnnouncements = exports.SchoolAnnouncements = void 0;
-const Announcements_1 = __importDefault(require("../libs/Announcements"));
-exports.SchoolAnnouncements = Announcements_1.default("校內訊息公告區", "school");
-exports.NetworkAnnouncements = Announcements_1.default("網路公告區", "network");
-exports.GradeAnnouncements = Announcements_1.default("升學公告區", "grade");
-exports.LawAnnouncements = Announcements_1.default("學校法規公告區", "law");
-exports.ContestAnnouncements = Announcements_1.default("競賽活動公告區", "contest");
-exports.DocumentsAnnouncements = Announcements_1.default("公文公告區", "documents");
-exports.StudyAnnouncements = Announcements_1.default("研習公告區", "study");
-exports.AnnouncementsProcessors = [
-    exports.LawAnnouncements,
-    exports.SchoolAnnouncements,
-    exports.NetworkAnnouncements,
-    exports.GradeAnnouncements,
-    exports.StudyAnnouncements,
-    exports.DocumentsAnnouncements,
-    exports.ContestAnnouncements,
+import AnnouncementWrapper from "../libs/Announcements";
+export const SchoolAnnouncements = AnnouncementWrapper("校內訊息公告區", "school");
+export const NetworkAnnouncements = AnnouncementWrapper("網路公告區", "network");
+export const GradeAnnouncements = AnnouncementWrapper("升學公告區", "grade");
+export const LawAnnouncements = AnnouncementWrapper("學校法規公告區", "law");
+export const ContestAnnouncements = AnnouncementWrapper("競賽活動公告區", "contest");
+export const DocumentsAnnouncements = AnnouncementWrapper("公文公告區", "documents");
+export const StudyAnnouncements = AnnouncementWrapper("研習公告區", "study");
+export const AnnouncementsProcessors = [
+    LawAnnouncements,
+    SchoolAnnouncements,
+    NetworkAnnouncements,
+    GradeAnnouncements,
+    StudyAnnouncements,
+    DocumentsAnnouncements,
+    ContestAnnouncements,
 ];
 //# sourceMappingURL=index.js.map

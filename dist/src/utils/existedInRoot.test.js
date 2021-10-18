@@ -1,10 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const existedInRoot_1 = require("./existedInRoot");
+import { existedInRoot } from "./existedInRoot";
 test("the existed case", () => {
-    existedInRoot_1.existedInRoot(".gitkeep");
+    existedInRoot(".gitkeep");
 });
 test("the not existed case", () => {
-    existedInRoot_1.existedInRoot(".gitaaaaaa");
+    existedInRoot(".gitaaaaaa");
 });
 //# sourceMappingURL=existedInRoot.test.js.map

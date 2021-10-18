@@ -1,22 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.AnnouncementContentProcessor = exports.relativeUrlParser = void 0;
-const loggers_1 = require("../../../loggers");
-const getParseCheerio_1 = require("../../../utils/getParseCheerio");
-function relativeUrlParser(url) {
+import { logger } from "../../../loggers";
+import { getParseCheerio } from "../../../utils/getParseCheerio";
+export function relativeUrlParser(url) {
     if (url.startsWith("http"))
         return url;
     return `http://www.smhs.kh.edu.tw/${url.replace(/^\//, "")}`;
 }
-exports.relativeUrlParser = relativeUrlParser;
 function announcementAttachmentsParser($, identifier) {
-    const log = loggers_1.logger("processors.libs.Announcements.content.announcementAttachmentsParser", { identifier });
+    const log = logger("processors.libs.Announcements.content.announcementAttachmentsParser", { identifier });
     const attachments = [];
     log.debug("extracting the attachments");
     const $attachments = $(".mptattach a");
     log.debug("start running each function");
     $attachments.each(function attachmentsEachFunction(each) {
-        const log = loggers_1.logger("processors.libs.Announcements.content.announcementAttachmentsParser.attachmentsEachFunction", { identifier, each });
+        const log = logger("processors.libs.Announcements.content.announcementAttachmentsParser.attachmentsEachFunction", { identifier, each });
         log.debug("extracting 'title' attribute");
         const name = $(this).attr("title");
         log.debug("extracting 'href' attribute");
@@ -38,7 +34,7 @@ function announcementAttachmentsParser($, identifier) {
     return attachments;
 }
 function announcementContentParser($, identifier) {
-    const log = loggers_1.logger("processors.libs.Announcements.content.announcementContentParser", { identifier });
+    const log = logger("processors.libs.Announcements.content.announcementContentParser", { identifier });
     log.debug("getting the title DOM");
     const $title = $(".hdline");
     log.debug("getting the content DOM");
@@ -60,12 +56,11 @@ function announcementContentParser($, identifier) {
         extra: {},
     };
 }
-async function AnnouncementContentProcessor(url, identifier = "unnamed") {
-    const log = loggers_1.logger("processors.libs.Announcements.content.AnnouncementContentProcessor", { identifier });
+export async function AnnouncementContentProcessor(url, identifier = "unnamed") {
+    const log = logger("processors.libs.Announcements.content.AnnouncementContentProcessor", { identifier });
     log.debug("getting the URL data");
-    const $ = await getParseCheerio_1.getParseCheerio(relativeUrlParser(url));
+    const $ = await getParseCheerio(relativeUrlParser(url));
     log.debug("parsing the data and return it");
     return announcementContentParser($, identifier);
 }
-exports.AnnouncementContentProcessor = AnnouncementContentProcessor;
 //# sourceMappingURL=content.js.map

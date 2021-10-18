@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const src_1 = require("./src");
-src_1.main();
+import { main } from "./src";
+main();
 //# sourceMappingURL=index.js.map
